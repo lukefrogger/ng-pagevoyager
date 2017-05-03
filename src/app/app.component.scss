@@ -1,0 +1,23 @@
+@import '../theme.scss';
+
+.container-fluid{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background: $b-dark;
+    background: linear-gradient(160deg, $b-mid 30%, $b-dark 100%);
+    min-height: 100vh;
+    padding-top: 4em; //to offset navbar on mobile device
+}
+.navbar{
+    background: white;
+    color: $b-dark;
+    > div{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        a{
+            color: $b-dark;
+        }
+    }
+}

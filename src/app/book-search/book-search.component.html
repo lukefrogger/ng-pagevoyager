@@ -1,0 +1,21 @@
+<h5>Book Search</h5>
+    <div class="input-group card-input">
+      <input type="text" class="form-control" [(ngModel)]="searchParam" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button" (click)="searchForBook()">Go!</button>
+      </span>
+    </div>
+    <hr>
+    <div class="search-wrapper row">
+        <div class="col-6" *ngFor="let book of sortedBooks" >
+            <div class="card" (click)="bookTapped(book)">
+                <div class="card-block">
+                    <div class="card-img"> <img [src]="book.thumbnail" onError="this.src='/assets/pv-cover-placeholder.png';" /></div>
+                    <div class="">
+                        <div class="card-title">{{book.title}}</div>
+                        <div class="card-author"><span *ngFor="let a of book.authors"><span *ngIf="a != book.authors[0]">, </span>{{a}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

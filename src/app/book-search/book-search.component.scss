@@ -1,0 +1,41 @@
+:host{
+    .card-input{
+        background: white;
+        box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+    }
+    .search-wrapper{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        .card{
+            .card-block{
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: flex-start;
+                padding: .75rem;
+                .card-img{
+                    box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.15);
+                    img{
+                        width: 100%;
+                    }
+                }
+                .card-title{
+                    margin-bottom: 0em;
+                    margin-top: .25rem;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2; /* number of lines to show */
+                    line-height: 1.2em;        /* fallback */
+                    max-height: 2.4em;  
+                }
+                .card-author{
+                    color: #24B3E2;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
