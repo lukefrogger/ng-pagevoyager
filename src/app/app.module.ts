@@ -9,17 +9,20 @@ import { AppRoutingModule } from "./app.routing";
 import { AuthenticateService } from "./services/authenticate.service";
 import { DbConnectService } from "./services/db-connect.service";
 import { GoogleBooksService } from "./services/google-books.service";
+import { GlobalService } from "./services/global.service";
 
 /* Pages */
 import { AppComponent } from './app.component';
 import { LoginComponent } from "./login/login.component";
 import { BookSearchComponent } from "./book-search/book-search.component";
+import { CreatePlanComponent } from './create-plan/create-plan.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent, 
-    BookSearchComponent
+    BookSearchComponent, 
+    CreatePlanComponent
   ],
   imports: [
     HttpModule,
@@ -29,7 +32,7 @@ import { BookSearchComponent } from "./book-search/book-search.component";
     BrowserAnimationsModule,
     BrowserModule
   ],
-  providers: [AuthenticateService, DbConnectService, GoogleBooksService],
+  providers: [AuthenticateService, DbConnectService, GoogleBooksService, GlobalService],
   bootstrap: [AppComponent]
 })
 

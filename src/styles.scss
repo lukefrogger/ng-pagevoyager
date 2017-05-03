@@ -8,6 +8,21 @@ html{
             border-radius: 2px;
             box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.20);
         }
+        .card-author{
+        color: #24B3E2;
+        font-size: 12px;
+        }
+        .card-title{
+            margin-bottom: 0em;
+            margin-top: .25rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            line-height: 1.2em;        /* fallback */
+            max-height: 2.4em;  
+        }
     }
     
 }

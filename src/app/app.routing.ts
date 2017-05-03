@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 /* Pages */
 import { LoginComponent } from "./login/login.component";
 import { BookSearchComponent } from "./book-search/book-search.component";
+import { CreatePlanComponent } from "./create-plan/create-plan.component";
 
 const routes :Routes = [
     { 
@@ -13,6 +14,10 @@ const routes :Routes = [
     {
         path: 'search',
         component: BookSearchComponent
+    },
+    {
+        path: 'create',
+        component: CreatePlanComponent
     },
     {
         path: '',

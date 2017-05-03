@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GoogleBooksService } from "../services/google-books.service";
 import { Book } from "../models/book";
+import { GlobalService } from "../services/global.service";
 
 @Component({
   selector: 'book-search',
@@ -10,9 +12,13 @@ import { Book } from "../models/book";
 export class BookSearchComponent implements OnInit {
 
   searchParam: string;
-  sortedBooks: Array<Book>;
+  sortedBooks: Array<Book> = this.global.searchResults;
 
-  constructor(public booksApi: GoogleBooksService) { }
+  constructor(
+    public booksApi: GoogleBooksService, 
+    public route: ActivatedRoute, 
+    public router: Router, 
+    public global: GlobalService) { }
 
   ngOnInit() {
   }
@@ -30,7 +36,7 @@ export class BookSearchComponent implements OnInit {
     
   }
 
-    sortBooks(books): Array<Book>{
+  sortBooks(books): Array<Book>{
       let tempBooksList = [];
       let image:string = '';
       for(let book of books){
@@ -49,7 +55,14 @@ export class BookSearchComponent implements OnInit {
         });
         tempBooksList.push(booksObject);
       }
+      this.global.searchResults = tempBooksList;
       return tempBooksList;
+  }
+
+  bookTapped(book){
+    console.log(book);
+    this.global.selectedBook = book;
+    this.router.navigate(['/create']);
   }
 
 }
