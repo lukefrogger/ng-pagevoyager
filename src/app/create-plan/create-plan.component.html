@@ -1,5 +1,5 @@
-<form #plan="ngForm" class="plan-create">
-    <!--<h5>Create your reading plan</h5>-->
+<form #plan="ngForm" name="plan" class="plan-create">
+    <h5>Setup Your Plan</h5>
     <div class="plan-header row form-group">
       <div class="plan-thumb col-6">
         <img [src]="selectedBook.thumbnail" onError="this.src='/assets/pv-cover-placeholder.png';" />
@@ -16,26 +16,25 @@
       <div class="card-block">
         <div class="form-group">
           <label for="start">Start Date</label>
-          <input type="date" (ngModel)="plan.start" class="form-control" required >
+          <input type="date" name="start" [(ngModel)]="start" class="form-control" required >
         </div>
         <div class="form-group">
           <label for="end">End Date</label>
-          <input type="date" (ngModel)="plan.end" class="form-control" required >
+          <input type="date" name="end" [(ngModel)]="end" class="form-control" required >
         </div>
       </div>
     </div>
     <h5>Select Available Days</h5>
-    <div class="day-selector" >
-      <div [class.active]="show6" id="su" (click)="makeActive('Sunday'); show6 = !show6">Su</div>
-      <div [class.active]="show0" id="mo" (click)="makeActive('Monday'); show0 = !show0">Mo</div>
-      <div [class.active]="show1" id="tu" (click)="makeActive('Tuesday'); show1 = !show1">Tu</div>
-      <div [class.active]="show2" id="we" (click)="makeActive('Wednesday'); show2 = !show2">We</div>
-      <div [class.active]="show3" id="th" (click)="makeActive('Thursday'); show3 = !show3">Th</div>
-      <div [class.active]="show4" id="fr" (click)="makeActive('Friday'); show4 = !show4">Fr</div>
-      <div [class.active]="show5" id="sa" (click)="makeActive('Saturday'); show5 = !show5">Sa</div>
+    <div class="day-selector card" >
+      <div class="col" [class.active]="show6" id="su" (click)="makeActive('Sunday'); show6 = !show6">Su</div>
+      <div class="col" [class.active]="show0" id="mo" (click)="makeActive('Monday'); show0 = !show0">Mo</div>
+      <div class="col" [class.active]="show1" id="tu" (click)="makeActive('Tuesday'); show1 = !show1">Tu</div>
+      <div class="col" [class.active]="show2" id="we" (click)="makeActive('Wednesday'); show2 = !show2">We</div>
+      <div class="col" [class.active]="show3" id="th" (click)="makeActive('Thursday'); show3 = !show3">Th</div>
+      <div class="col" [class.active]="show4" id="fr" (click)="makeActive('Friday'); show4 = !show4">Fr</div>
+      <div class="col" [class.active]="show5" id="sa" (click)="makeActive('Saturday'); show5 = !show5">Sa</div>
     </div>
-    <br>
     <div class="form-group">
-      <button class="btn btn-outline-danger" (click)="createReadingPlan()" [disabled]="!plan.valid">Create Your Reading Plan</button>
+      <button class="btn btn-outline-danger btn-block" (click)="createReadingPlan()" [disabled]="!plan.valid">Create Your Reading Plan</button>
     </div>
   </form>

@@ -13,22 +13,23 @@ import { Book } from "../models/Book";
 export class CreatePlanComponent implements OnInit {
 
   selectedBook: Book;
-  plan: {'start': string, 'end': string};
-  start: Date;
-  end: Date;
+  start: Date = new Date();
+  end: Date =  new Date();
   daysSet: any = new Set();
 
-  constructor(public route: ActivatedRoute, public router: Router, public global: GlobalService) { }
+  constructor(public route: ActivatedRoute, public router: Router, public global: GlobalService) { 
+     
+  }
 
   ngOnInit() {
     this.selectedBook = this.global.selectedBook;
-    console.log(this.selectedBook);
     this.goBackIfNoBook();
   }
 
   goBackIfNoBook(){
     if(this.selectedBook === undefined){
       this.router.navigate(['/search']);
+      window.location.reload();
     }
   }
 
@@ -41,13 +42,12 @@ export class CreatePlanComponent implements OnInit {
   }
 
   createReadingPlan(){
-    console.log(this.plan);
-    if(this.daysSet.size == 0 || this.plan.start == "" || this.plan.end == ""){
+    if(this.daysSet.size == 0 || this.start == undefined || this.end == undefined){
        console.log('input needed');
     } else {
       console.log('set loading on');
-      let s = {start: this.plan.start};
-      let e = {end: this.plan.end};
+      let s = {start: this.start};
+      let e = {end: this.end};
       let d = {aDays: this.daysSet};
       let pc = {bookDetails: this.selectedBook};
       let _plan = Object.assign(s,e,d,pc);
