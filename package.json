@@ -8,7 +8,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "preinstall": "npm install yarn",
     "postinstall": "ng build --prod"
   },
   "private": true,
@@ -35,7 +34,8 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.2.0",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "node-sass": "^4.5.3"
   },
   "devDependencies": {
     "jasmine-core": "~2.5.2",
