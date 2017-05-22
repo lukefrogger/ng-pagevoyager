@@ -10,6 +10,9 @@ import { GlobalService } from "../services/global.service";
 })
 export class LoginComponent implements OnInit {
 
+  email: string;
+  password: string;
+
   constructor(public router: Router, public global: GlobalService) { }
 
   ngOnInit() {

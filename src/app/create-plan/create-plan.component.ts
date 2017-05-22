@@ -18,6 +18,14 @@ export class CreatePlanComponent implements OnInit {
   end: Date =  new Date();
   daysSet: any = new Set();
 
+  show0: boolean;
+  show1: boolean;
+  show2: boolean;
+  show3: boolean;
+  show4: boolean;
+  show5: boolean;
+  show6: boolean;
+
   constructor(public router: Router, public global: GlobalService, public db: DbConnectService) { 
      
   }
@@ -34,7 +42,7 @@ export class CreatePlanComponent implements OnInit {
     }
   }
 
-  makeActive(day, index){
+  makeActive(day){
     if(this.daysSet.has(day)){
       this.daysSet.delete(day);
     } else  {

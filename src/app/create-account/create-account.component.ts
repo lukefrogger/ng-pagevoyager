@@ -13,6 +13,8 @@ import { GlobalService } from "../services/global.service";
 export class CreateAccountComponent implements OnInit {
 
   selectedBook: any;
+  email: string;
+  password: string;
 
   constructor(private router: Router, public global: GlobalService) { }
 
