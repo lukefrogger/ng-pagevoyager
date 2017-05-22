@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
 import { GlobalService } from "../services/global.service";
-import { Book } from "../models/Book";
+import { Book } from "../models/book";
 import { DbConnectService } from "../services/db-connect.service";
 
 @Component({

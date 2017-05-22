@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { GlobalService } from "../services/global.service";
-import { Book } from "../models/Book";
+import { Book } from "../models/book";
 
 @Component({
   selector: 'app-reading-plan',
