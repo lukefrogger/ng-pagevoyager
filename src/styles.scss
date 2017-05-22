@@ -1,9 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import './theme.scss';
 
 html{
     body{
         .card{
-            color: #023a72;
+            color: $b-dark;
             margin-bottom: 15px;
             border-radius: 2px;
             box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.20);
