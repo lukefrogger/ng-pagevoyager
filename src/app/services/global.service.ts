@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable  } from '@angular/core';
+import { BehaviorSubject }    from 'rxjs/BehaviorSubject';
 import { Book } from "../models/book";
 
 
@@ -7,7 +8,13 @@ export class GlobalService {
 
   public searchResults: Array<Book>;
   public selectedBook: Book;
+  public currentPlans: any;
+  public authenticated$ = new BehaviorSubject(null);
 
   constructor() { }
+
+  changeAuthStatus(status){
+    this.authenticated$.next(status);
+  }
 
 }

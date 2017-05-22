@@ -14,15 +14,21 @@ import { GlobalService } from "./services/global.service";
 /* Pages */
 import { AppComponent } from './app.component';
 import { LoginComponent } from "./login/login.component";
+import { CreateAccountComponent } from "./create-account/create-account.component";
 import { BookSearchComponent } from "./book-search/book-search.component";
 import { CreatePlanComponent } from './create-plan/create-plan.component';
+import { ReadingPlanComponent } from './reading-plan/reading-plan.component';
+import { ActivePlansComponent } from './active-plans/active-plans.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent, 
     BookSearchComponent, 
-    CreatePlanComponent
+    CreatePlanComponent,
+    ReadingPlanComponent,
+    CreateAccountComponent,
+    ActivePlansComponent
   ],
   imports: [
     HttpModule,

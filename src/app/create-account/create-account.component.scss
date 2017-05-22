@@ -1,0 +1,21 @@
+@import '../../theme.scss';
+:host{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    .login-wrapper{
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        align-items: center;
+        padding: 2em;
+        .login-img{
+            margin-bottom: 3rem;
+        }
+        div:last-of-type{
+            align-self: stretch
+        }
+    }
+}

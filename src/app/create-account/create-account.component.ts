@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase';
+import { GlobalService } from "../services/global.service";
 
 @Component({
   selector: 'app-create-account',
@@ -12,10 +14,23 @@ export class CreateAccountComponent implements OnInit {
 
   selectedBook: any;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private router: Router, public global: GlobalService) { }
 
   ngOnInit() {
      
+  }
+  createUser(email: string, password: string){
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(
+      (success) => {
+        this.global.changeAuthStatus(true);
+        this.router.navigate(['/current']);
+      },
+      (fail) => {
+        //show errors
+        console.log(fail);
+      }
+    );
   }
 
 }

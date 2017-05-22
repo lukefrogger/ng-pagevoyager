@@ -1,5 +1,17 @@
- <nav class="navbar fixed-top">
-    <div class="navbar-brand"><a href="#">Page Voyager</a> <i class="fa fa-bars pull-right" aria-hidden="true"></i></div>
+<div class="navigation col-12" [hidden]="hidden" (click)="hideNav()">
+    <div class="nav-title navbar-brand"><div>Page Voyager</div> <i class="fa fa-times" aria-hidden="true" (click)="hideNav()"></i></div>
+    <ul>
+        <li *ngIf="authenticated"><a routerLink="/search">Search</a></li>
+        <li *ngIf="authenticated"><a routerLink="/current">Active Plans</a></li>
+        <li><a routerLink="/">Contact Us</a></li>
+        <li><a routerLink="/">About Page Voyager</a></li>
+    </ul>
+</div>
+<nav class="navbar fixed-top">
+    <div class="navbar-brand">
+        <a href="#">Page Voyager</a>
+        <i class="fa fa-bars pull-right" aria-hidden="true" (click)="showNav()"></i>
+    </div>
 </nav>
 <div class="container-fluid">
     <router-outlet></router-outlet>

@@ -1,0 +1,15 @@
+<div class="no-books" *ngIf="empty">
+  <h5>You have no reading plans active.</h5>
+  <button class="btn btn-secondary" (click)="goToSearch()">Search for a book</button>
+</div>
+<div class="list" *ngIf="!empty">
+  <div class="list-item row" *ngFor="let plan of sortedPlans" (click)="goToPlan(plan)">
+    <div class="col-6">
+      <img class="active-thumb img-fluid" [src]="plan.cover" alt="" onError="this.src='/assets/pv-cover-placeholder.png';" >
+    </div>
+    <div class="col-6">
+      <div class="title">{{plan.title}}</div>
+      <div class="author"><span *ngFor="let a of plan.authors"><span *ngIf="a != plan.authors[0]">, </span>{{a}}</span></div>
+    </div>
+  </div>
+</div>

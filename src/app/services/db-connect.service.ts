@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import * as firebase from 'firebase';
+import { GlobalService } from "./global.service";
 
 @Injectable()
 export class DbConnectService {
@@ -10,11 +11,10 @@ export class DbConnectService {
   options: Object;
   plan:any;
   days: any = [];
-  planList: any;
   stuff:any;
   
 
-  constructor(private http: Http) {
+  constructor(private http: Http, public global: GlobalService) {
     console.log('plan-data');
     this.currentUser = firebase.auth().currentUser.uid;
     this.planPath = firebase.database().ref('userProfile/' + this.currentUser + '/plan');
@@ -49,29 +49,27 @@ export class DbConnectService {
     }
     //add book details to the Object
     this.plan = {
+      authors: prePlan.bookDetails.authors,
+      bookId: prePlan.bookDetails.bookId,
       title: prePlan.bookDetails.title,
-      completedPages: 0,
-      totalPages: tpages,
+      pagesComplete: 0,
+      pagesTotal: tpages,
       cover: prePlan.bookDetails.thumbnail,
       days: this.days,
-      pagesLeft: tpages
     }
     
     //promise to insert plan then add ID to plan and then return bool
     return this.stuff = this.planPath.push(this.plan).then( (rtn) =>{
       this.planPath.child(rtn.key).child('id').set(rtn.key);
       this.planPath.off();
-      return this.plan;
+      return rtn.key;
     });
   }
 
-  getPlanList(){
-    this.planList = this.planPath.once('value', (data) =>{ 
-      data.val(); 
+  getAllPlans(): any{
+    this.planPath.once('value').then(function(snapshot) {
+      return snapshot.val();
     });
-    this.planPath.off();
-    return this.planList;
-    
   }
 
   updateWithCompletedReading(plan, dayIndex, secPerPage){

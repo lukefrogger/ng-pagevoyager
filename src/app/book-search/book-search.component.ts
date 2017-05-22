@@ -24,14 +24,14 @@ export class BookSearchComponent implements OnInit {
   }
 
   searchForBook(): void{
-    if(this.searchParam !=  undefined){
+    if(this.searchParam !==  undefined){
       this.booksApi.searchBooks(this.searchParam)
         .subscribe(
           (books) => this.sortedBooks = this.sortBooks(books),
           (error) => console.log('error error error')
         );
     } else {
-      
+      console.log('do something here');
     }
     
   }
@@ -44,14 +44,12 @@ export class BookSearchComponent implements OnInit {
           image = book.volumeInfo.imageLinks.thumbnail.replace("http", "https");
         }
         let booksObject = new Book({
+          id: '',
           bookId: book.id ? book.id : '',
           title: book.volumeInfo.title ? book.volumeInfo.title : '',
           authors: book.volumeInfo.authors ? book.volumeInfo.authors : [],
           pageCount: book.volumeInfo.pageCount ? book.volumeInfo.pageCount : '',
           thumbnail: book.volumeInfo.imageLinks ? image : '',
-          isbn_10: book.volumeInfo.industryIdentifiers[0] ? book.volumeInfo.industryIdentifiers[0].identifier : '',
-          isbn_13: book.volumeInfo.industryIdentifiers[1] ? book.volumeInfo.industryIdentifiers[1].identifier : '',
-          rating: book.volumeInfo.averageRating ? book.volumeInfo.averageRating : ''
         });
         tempBooksList.push(booksObject);
       }
