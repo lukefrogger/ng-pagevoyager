@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build --prod",
+    "start": "node server.js"
   },
   "private": true,
   "dependencies": {
@@ -28,14 +29,15 @@
     "bootstrap": "^4.0.0-alpha.6",
     "codelyzer": "~2.0.0",
     "core-js": "^2.4.1",
+    "express": "^4.15.3",
     "firebase": "^3.9.0",
     "font-awesome": "^4.6.3",
+    "node-sass": "^4.5.3",
     "rxjs": "^5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.2.0",
-    "zone.js": "^0.8.4",
-    "node-sass": "^4.5.3"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "jasmine-core": "~2.5.2",
