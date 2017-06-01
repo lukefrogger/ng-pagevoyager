@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from "@angular/common";
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/Observable';
@@ -16,7 +17,7 @@ export class CreateAccountComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private router: Router, public global: GlobalService) { }
+  constructor(private router: Router, public global: GlobalService, public loc: Location) { }
 
   ngOnInit() {
      
@@ -33,6 +34,11 @@ export class CreateAccountComponent implements OnInit {
         console.log(fail);
       }
     );
+  }
+
+  goBack(){
+    console.log('going back');
+    this.loc.back();
   }
 
 }

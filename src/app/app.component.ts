@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { GlobalService } from "./services/global.service";
 import * as firebase from 'firebase';
 
@@ -8,10 +8,10 @@ import * as firebase from 'firebase';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit{
 
-  hidden: boolean = true;
-  
+  showNavi: boolean = false;
+  smallScreen: boolean;
   authenticated: boolean;
 
   constructor(public global: GlobalService){
@@ -26,6 +26,11 @@ export class AppComponent {
     };
     firebase.initializeApp(config);
     this.setupStreams();
+    this.setupPageLayout();
+  }
+
+  ngAfterViewInit() {
+    
   }
 
   setupStreams(){
@@ -33,11 +38,22 @@ export class AppComponent {
   }
 
   showNav(){
-    this.hidden = false;
+    this.showNavi = false;
   }
 
   hideNav(){
-    this.hidden = true;
+    this.showNavi = true;
   }
   
+  setupPageLayout(){
+    //577 is sm in boostrap
+    if(window.screen.width >= 577){
+      console.log(window.screen.width);
+      this.smallScreen = false;
+      this.showNavi = true;
+    } else {
+      this.smallScreen = true;
+      this.showNavi = false;
+    }
+  }
 }

@@ -67,7 +67,7 @@ export class DbConnectService {
   }
 
   getAllPlans(): any{
-    this.planPath.once('value').then(function(snapshot) {
+    this.planPath.on('value').then(function(snapshot) {
       return snapshot.val();
     });
   }

@@ -1,4 +1,4 @@
-<div class="login-wrapper col-12 col-sm-6 col-md-4 col-lg-3 card">
+<div class="login-wrapper col-12 col-sm-6 col-md-4 card">
   <div class="login-img">
     <img src="/assets/logo-type-color.png" alt="logo" class="img-fluid"/>
   </div>
@@ -12,9 +12,9 @@
         <!--<label>Password</label>-->
         <input class="form-control" [(ngModel)]="password" type="password" name="pass" #pass="ngModel" placeholder="Password"/>
       </div>
-      <button class="btn btn-block btn-outline-primary" type="submit" (click)="logUserIn(em.model, pass.model)">Login</button>
+      <button class="btn btn-block btn-primary" type="submit" (click)="logUserIn(em.model, pass.model)">Login</button>
     </form>
     <br>
-    <button class="btn btn-primary btn-block" (click)="goToSignup()">Create a new account</button>
+    <button class="btn btn-outline-primary btn-block" (click)="goToSignup()">Create a new account</button>
   </div>
 </div>

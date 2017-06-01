@@ -26,7 +26,6 @@
         list-style: none;
         margin: 0px;
         padding: 0px;
-        text-align: center;
         color: $b-mid;
         li{
             cursor: pointer;
@@ -58,5 +57,9 @@
     i{
         cursor: pointer;
     }
+    
 } 
+.fl-ce{
+    justify-content: center !important;
+}
 

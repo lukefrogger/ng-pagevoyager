@@ -10,12 +10,17 @@
         flex-flow: column nowrap;
         justify-content: space-around;
         align-items: center;
-        padding: 2em;
+        padding: 2em 1em 1em 1em;
         .login-img{
             margin-bottom: 3rem;
         }
         div:last-of-type{
             align-self: stretch
+        }
+        .button-wrapper{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
         }
     }
 }
