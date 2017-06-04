@@ -58,7 +58,7 @@ export class DbConnectService {
       days: this.days,
     }
     
-    //promise to insert plan then add ID to plan and then return bool
+    //insert plan then add ID to plan and then return bool
     return this.stuff = this.planPath.push(this.plan).then( (rtn) =>{
       this.planPath.child(rtn.key).child('id').set(rtn.key);
       this.planPath.off();
@@ -72,11 +72,11 @@ export class DbConnectService {
     });
   }
 
-  updateWithCompletedReading(plan, dayIndex, secPerPage){
+  updateWithCompletedReading(plan, dayIndex){
     let comp = Object.assign(plan.days[dayIndex], {completed:true});
     let updates = {};
     updates[`userProfile/${this.currentUser}/plan/${plan.id}/days/${dayIndex}`] = comp;
-    updates[`userProfile/${this.currentUser}/plan/${plan.id}/timing`] = secPerPage;
+    // updates[`userProfile/${this.currentUser}/plan/${plan.id}/timing`] = secPerPage;
     return firebase.database().ref().update(updates);
   }
 }

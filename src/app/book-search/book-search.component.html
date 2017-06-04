@@ -7,7 +7,7 @@
     </div>
     <hr>
     <div class="search-wrapper row">
-        <div class="col-6" *ngFor="let book of sortedBooks" >
+        <div class="col-6 col-sm-4 col-md-3" *ngFor="let book of sortedBooks" >
             <div class="card" (click)="bookTapped(book)">
                 <div class="card-block">
                     <div class="card-img"> <img [src]="book.thumbnail" onError="this.src='/assets/pv-cover-placeholder.png';" /></div>

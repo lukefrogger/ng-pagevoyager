@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { GlobalService } from "../services/global.service";
+import { DbConnectService } from "../services/db-connect.service";
 import { Book } from "../models/book";
 
 @Component({
@@ -12,8 +13,10 @@ export class ReadingPlanComponent implements OnInit {
 
   plan: any;
   todaysReading: any;
+  error: boolean = false;
+  errorMsg: string;
 
-  constructor(public route: ActivatedRoute, public router: Router, public global: GlobalService) { }
+  constructor(public route: ActivatedRoute, public router: Router, public global: GlobalService, public db: DbConnectService) { }
 
   ngOnInit() {
     this.getReadingPlan(this.route.snapshot.params['id']);
@@ -39,4 +42,15 @@ export class ReadingPlanComponent implements OnInit {
       }
     }
   }
+
+  updateReadingPlan(){
+    this.db.updateWithCompletedReading(this.plan, this.todaysReading).then(
+      (success) => this._getTodaysReading(),
+      (fail) => {
+        this.error = true;
+        this.errorMsg = 'There was an problem updating your reading plan.';
+      }
+    )
+  }
+
 }

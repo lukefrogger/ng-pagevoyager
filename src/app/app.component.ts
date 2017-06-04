@@ -13,6 +13,7 @@ export class AppComponent implements AfterViewInit{
   showNavi: boolean = false;
   smallScreen: boolean;
   authenticated: boolean;
+  loading: boolean = false;
 
   constructor(public global: GlobalService){
     // Initialize Firebase
@@ -35,20 +36,20 @@ export class AppComponent implements AfterViewInit{
 
   setupStreams(){
     this.global.authenticated$.subscribe( (status) => this.authenticated = status );
+    this.global.loading$.subscribe( (status) => this.loading = status);
   }
 
   showNav(){
-    this.showNavi = false;
+    this.showNavi = true;
   }
 
   hideNav(){
-    this.showNavi = true;
+    this.showNavi = false;
   }
   
   setupPageLayout(){
     //577 is sm in boostrap
     if(window.screen.width >= 577){
-      console.log(window.screen.width);
       this.smallScreen = false;
       this.showNavi = true;
     } else {

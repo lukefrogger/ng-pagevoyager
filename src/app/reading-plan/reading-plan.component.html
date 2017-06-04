@@ -1,5 +1,8 @@
 <h5 class="form-group">{{plan.title}}</h5>
-<div class="reading-today col-12 card">
+<div class="alert alert-danger" [hidden]="!error">
+  <strong>Oh no! </strong> {{errorMsg}}
+</div>
+<div class="reading-today col-12 col-sm-6 col-md-4 card">
   <div class="row">
     <div class="day-number col-4">
       <div>Day</div>
@@ -10,5 +13,8 @@
       <div class="date">{{todaysReading.date}}</div>
       <div class="pages">{{todaysReading.pages}} pages</div>
     </div>
+  </div>
+  <div class="row">
+    
   </div>
 </div>
