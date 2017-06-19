@@ -15,6 +15,7 @@ export class ReadingPlanComponent implements OnInit {
   todaysReading: any;
   error: boolean = false;
   errorMsg: string;
+  behind: boolean = true;
 
   constructor(public route: ActivatedRoute, public router: Router, public global: GlobalService, public db: DbConnectService) { }
 
@@ -24,32 +25,36 @@ export class ReadingPlanComponent implements OnInit {
 
   getReadingPlan(urlId){
     for(let tempPlan of this.global.currentPlans){
-      if(tempPlan.id = urlId){
+      if(tempPlan.id == urlId){
         this.plan = tempPlan;
         this._getTodaysReading();
+        break;
       }
     }
   }
 
   _getTodaysReading(){
-    let counter = 0;
     for(let day of this.plan.days){
-      counter++;
       if(!day.completed){
         this.todaysReading = day;
-        this.todaysReading.count = counter;
         break;
       }
     }
   }
 
   updateReadingPlan(){
-    this.db.updateWithCompletedReading(this.plan, this.todaysReading).then(
+    this.db.updateWithCompletedReading(this.plan, this.todaysReading.count-1).then(
       (success) => this._getTodaysReading(),
       (fail) => {
         this.error = true;
         this.errorMsg = 'There was an problem updating your reading plan.';
       }
+    )
+  }
+
+  recalculatePlan(){
+    this.db.recalculatePlan(this.plan, this.todaysReading.dayCount).then(
+
     )
   }
 

@@ -20,9 +20,6 @@ html{
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2; /* number of lines to show */
-            line-height: 1.2em;        /* fallback */
-            max-height: 2.4em;  
         }
     }
     

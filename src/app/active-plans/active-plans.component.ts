@@ -35,7 +35,6 @@ export class ActivePlansComponent implements OnInit {
     if(data != null){
       this.global.currentPlans = Object.keys(data).map(key => data[key]);
       this.sortedPlans = Object.keys(data).map(key => data[key]);
-      console.log(this.sortedPlans);
     } else {
       this.empty = true;
     }

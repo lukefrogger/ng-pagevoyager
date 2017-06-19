@@ -15,7 +15,6 @@ export class DbConnectService {
   
 
   constructor(private http: Http, public global: GlobalService) {
-    console.log('plan-data');
     this.currentUser = firebase.auth().currentUser.uid;
     this.planPath = firebase.database().ref('userProfile/' + this.currentUser + '/plan');
     this.options = {weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric'};
@@ -26,14 +25,18 @@ export class DbConnectService {
     let looper = Date.parse(`${prePlan.start}`);
     let endMil = Date.parse(`${prePlan.end}`);
 
+    let dayCount=0;
     while(looper < endMil){
+      
       //set the plan's start date as interation 1
       let date = new Date(looper).toLocaleDateString('en-US', this.options).split(/\s*,\s*/);
       //If a selected day matches, push into new array
       if(prePlan.aDays.has(date[0])){
+        dayCount++;
         this.days.push({
           date: date[1],
-          day: date[0]
+          day: date[0],
+          dayCount: dayCount
         });
       }
       //add 1 day in milliseconds
@@ -74,9 +77,39 @@ export class DbConnectService {
 
   updateWithCompletedReading(plan, dayIndex){
     let comp = Object.assign(plan.days[dayIndex], {completed:true});
+    let pages = plan.days[dayIndex].pages*(dayIndex+1);
     let updates = {};
     updates[`userProfile/${this.currentUser}/plan/${plan.id}/days/${dayIndex}`] = comp;
-    // updates[`userProfile/${this.currentUser}/plan/${plan.id}/timing`] = secPerPage;
+    updates[`userProfile/${this.currentUser}/plan/${plan.id}/pagesComplete`] = pages;
+    return firebase.database().ref().update(updates);
+  }
+
+  recalculatePlan(plan, dayCount){
+    let updates;
+    let totalNewDays = 0;
+    
+    //get total pages left in reading plan
+    let pagesLeft = plan.pagesTotal - plan.pagesComplete;
+
+    //find total number of days left
+    plan.days.forEach(day => {
+      if(day.pageCount >= dayCount){
+        totalNewDays++;
+      }
+    });
+
+    let newPagesPerDay = Math.floor(pagesLeft/totalNewDays);
+
+    for(let day of plan.days){
+      if(day.pageCount >= dayCount){
+         day.pages = newPagesPerDay;
+      } else if(!day.completed && day.dayCount < dayCount) {
+        day.pages = 0;
+      }
+    }  
+
+    updates[`userProfile/${this.currentUser}/plan/${plan.id}/days`] = plan.days;  
+
     return firebase.database().ref().update(updates);
   }
 }

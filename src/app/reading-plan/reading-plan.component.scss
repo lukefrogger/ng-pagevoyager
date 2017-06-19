@@ -1,3 +1,5 @@
+@import '../../theme.scss';
+
 .reading-today{
     &.card{
         border: 0px;
@@ -13,7 +15,7 @@
             padding: .75rem;
             background: #24B3E2;
             color: white;
-            border-right: 4px solid #015AB4;
+            border-right: 2px solid $b-dark;
             div:first-of-type{
                 align-self: flex-start;
                 font-size: 14px;
@@ -39,4 +41,9 @@
         }
     }
    
+}
+.behind{
+    h4{
+        margin-bottom: .5em;
+    }
 }
